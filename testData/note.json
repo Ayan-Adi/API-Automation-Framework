@@ -1,7 +1,12 @@
 {
-  "validNote": {
-    "title": "Practice WebApp UI",
-    "description": "Finish the development of the UI Automation Practice WebApp",
+  "noteToUpdate": {
+    "title": "abcd",
+    "description": "cowe cwiorvbonvlwef",
+    "category": "Home"
+  },
+  "noteToDelete": {
+    "title": "Temporary note",
+    "description": "This note will be deleted in the delete API test",
     "category": "Home"
   },
   "expectedResponse": {

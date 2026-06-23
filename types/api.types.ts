@@ -78,3 +78,9 @@ export interface UpdateNoteResponse {
   message: string;
   data: NoteData;
 }
+
+export interface DeleteNoteResponse {
+  success: boolean;
+  status: number;
+  message: string;
+}

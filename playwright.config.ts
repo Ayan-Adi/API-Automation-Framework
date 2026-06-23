@@ -29,6 +29,7 @@ const authProject = `auth-${environment.name}`;
 const notesProject = `notes-${environment.name}`;
 const getNotesProject = `get-notes-${environment.name}`;
 const updateNoteProject = `update-note-${environment.name}`;
+const deleteNoteProject = `delete-note-${environment.name}`;
 
 export default defineConfig({
   testDir: './tests',
@@ -63,6 +64,11 @@ export default defineConfig({
       name: updateNoteProject,
       testMatch: /update-note\.spec\.ts/,
       dependencies: [getNotesProject],
+    },
+    {
+      name: deleteNoteProject,
+      testMatch: /delete-note\.spec\.ts/,
+      dependencies: [updateNoteProject],
     },
   ],
 });

@@ -1,15 +1,23 @@
 {
   "user": {
-    "id": "6a3aaa4534bba2029647d038",
+    "id": "6a3aabba34bba2029647d08a",
     "name": "Abcd",
-    "email": "user_1782229573005@example.com",
+    "email": "user_1782229946645@example.com",
     "password": "TestPassword123!"
   },
-  "token": "43ac1fb03fb34b839f216825715bda068b37783f4a61416ca91531f6502654d7",
-  "note": {
-    "id": "6a3aaa4634bba2029647d040",
-    "title": "Practice WebApp UI Updated",
-    "description": "Finish the development of the UI Automation Practice WebApp Updated",
-    "category": "Home"
+  "token": "0b335b84f79b4fd2a8512a3a109f9f4c9a15540dd0e242c7bbdd805a37484c8d",
+  "notes": {
+    "noteToUpdate": {
+      "id": "6a3aabbc34bba2029647d092",
+      "title": "Practice WebApp UI Updated",
+      "description": "Finish the development of the UI Automation Practice WebApp Updated",
+      "category": "Home"
+    },
+    "noteToDelete": {
+      "id": "6a3aabbd34bba2029647d096",
+      "title": "Temporary note",
+      "description": "This note will be deleted in the delete API test",
+      "category": "Home"
+    }
   }
 }

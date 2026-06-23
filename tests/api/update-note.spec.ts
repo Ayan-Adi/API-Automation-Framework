@@ -1,5 +1,5 @@
 import { test, expect } from '../../fixtures/api.fixture';
-import { getAuthToken, getCreatedNote, readAuthSession, saveCreatedNote } from '../../helpers/auth.store';
+import { getAuthToken, getNoteToUpdate, readAuthSession, updateNoteToUpdate } from '../../helpers/auth.store';
 import updateNoteData from '../../testData/update-note.json';
 import { UpdateNoteResponse } from '../../types/api.types';
 
@@ -9,12 +9,12 @@ test.describe('Update Note API', () => {
   }) => {
     const session = readAuthSession();
     const token = getAuthToken();
-    const createdNote = getCreatedNote();
+    const noteToUpdate = getNoteToUpdate();
 
     expect(token).toBeTruthy();
 
     const payload = {
-      id: createdNote.id,
+      id: noteToUpdate.id,
       title: updateNoteData.updatedNote.title,
       description: updateNoteData.updatedNote.description,
       category: updateNoteData.updatedNote.category,
@@ -32,7 +32,7 @@ test.describe('Update Note API', () => {
     expect(body.message).toBe(updateNoteData.expectedResponse.message);
 
     expect(body.data).toBeDefined();
-    expect(body.data.id).toBe(createdNote.id);
+    expect(body.data.id).toBe(noteToUpdate.id);
     expect(body.data.title).toBe(payload.title);
     expect(body.data.description).toBe(payload.description);
     expect(body.data.category).toBe(payload.category);
@@ -41,7 +41,7 @@ test.describe('Update Note API', () => {
     expect(body.data.created_at).toBeTruthy();
     expect(body.data.updated_at).toBeTruthy();
 
-    saveCreatedNote({
+    updateNoteToUpdate({
       id: body.data.id,
       title: body.data.title,
       description: body.data.description,

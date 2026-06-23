@@ -15,10 +15,15 @@ export interface StoredNote {
   category: string;
 }
 
+export interface StoredNotes {
+  noteToUpdate: StoredNote;
+  noteToDelete: StoredNote;
+}
+
 export interface AuthSession {
   user: StoredUserCredentials;
   token?: string;
-  note?: StoredNote;
+  notes?: StoredNotes;
 }
 
 const AUTH_DIR = path.resolve(__dirname, '../.auth');
@@ -67,26 +72,48 @@ export function getAuthToken(): string {
   return session.token;
 }
 
-export function saveCreatedNote(note: StoredNote): void {
+export function saveCreatedNotes(notes: StoredNotes): void {
   ensureAuthDir();
   const session = readAuthSession();
 
   if (!session) {
-    throw new Error('Cannot save note: session not found. Run authentication first.');
+    throw new Error('Cannot save notes: session not found. Run authentication first.');
   }
 
-  session.note = note;
+  session.notes = notes;
   fs.writeFileSync(SESSION_FILE, JSON.stringify(session, null, 2));
 }
 
-export function getCreatedNote(): StoredNote {
+export function updateNoteToUpdate(note: StoredNote): void {
+  ensureAuthDir();
   const session = readAuthSession();
 
-  if (!session?.note) {
-    throw new Error('Created note not found. Run create note test first.');
+  if (!session?.notes) {
+    throw new Error('Created notes not found. Run create note test first.');
   }
 
-  return session.note;
+  session.notes.noteToUpdate = note;
+  fs.writeFileSync(SESSION_FILE, JSON.stringify(session, null, 2));
+}
+
+export function getNoteToUpdate(): StoredNote {
+  const session = readAuthSession();
+
+  if (!session?.notes?.noteToUpdate) {
+    throw new Error('Note to update not found. Run create note test first.');
+  }
+
+  return session.notes.noteToUpdate;
+}
+
+export function getNoteToDelete(): StoredNote {
+  const session = readAuthSession();
+
+  if (!session?.notes?.noteToDelete) {
+    throw new Error('Note to delete not found. Run create note test first.');
+  }
+
+  return session.notes.noteToDelete;
 }
 
 export function clearAuthSession(): void {

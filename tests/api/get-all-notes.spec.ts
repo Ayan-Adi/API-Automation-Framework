@@ -1,5 +1,5 @@
 import { test, expect } from '../../fixtures/api.fixture';
-import { getAuthToken, getCreatedNote, readAuthSession } from '../../helpers/auth.store';
+import { getAuthToken, getNoteToDelete, getNoteToUpdate, readAuthSession } from '../../helpers/auth.store';
 import getNotesData from '../../testData/get-notes.json';
 import { GetAllNotesResponse } from '../../types/api.types';
 
@@ -9,7 +9,8 @@ test.describe('Get All Notes API', () => {
   }) => {
     const session = readAuthSession();
     const token = getAuthToken();
-    const createdNote = getCreatedNote();
+    const noteToUpdate = getNoteToUpdate();
+    const noteToDelete = getNoteToDelete();
 
     expect(token).toBeTruthy();
 
@@ -24,17 +25,19 @@ test.describe('Get All Notes API', () => {
     expect(body.message).toBe(getNotesData.expectedResponse.message);
 
     expect(Array.isArray(body.data)).toBe(true);
-    expect(body.data.length).toBeGreaterThan(0);
+    expect(body.data.length).toBeGreaterThanOrEqual(2);
 
-    const note = body.data.find((item) => item.id === createdNote.id);
+    for (const expectedNote of [noteToUpdate, noteToDelete]) {
+      const note = body.data.find((item) => item.id === expectedNote.id);
 
-    expect(note).toBeDefined();
-    expect(note!.title).toBe(createdNote.title);
-    expect(note!.description).toBe(createdNote.description);
-    expect(note!.category).toBe(createdNote.category);
-    expect(note!.completed).toBe(false);
-    expect(note!.user_id).toBe(session!.user.id);
-    expect(note!.created_at).toBeTruthy();
-    expect(note!.updated_at).toBeTruthy();
+      expect(note).toBeDefined();
+      expect(note!.title).toBe(expectedNote.title);
+      expect(note!.description).toBe(expectedNote.description);
+      expect(note!.category).toBe(expectedNote.category);
+      expect(note!.completed).toBe(false);
+      expect(note!.user_id).toBe(session!.user.id);
+      expect(note!.created_at).toBeTruthy();
+      expect(note!.updated_at).toBeTruthy();
+    }
   });
 });

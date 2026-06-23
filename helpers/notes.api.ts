@@ -39,4 +39,12 @@ export class NotesApi {
       },
     });
   }
+
+  async deleteNote(noteId: string): Promise<APIResponse> {
+    return this.request.delete(`notes/${noteId}`, {
+      headers: {
+        'x-auth-token': getAuthToken(),
+      },
+    });
+  }
 }
