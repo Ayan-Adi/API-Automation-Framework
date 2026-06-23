@@ -1,0 +1,7 @@
+{
+  "expectedResponse": {
+    "success": true,
+    "status": 200,
+    "message": "Notes successfully retrieved"
+  }
+}

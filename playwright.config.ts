@@ -25,6 +25,10 @@ if (fs.existsSync(envFilePath)) {
 }
 
 const environment = getEnvironmentConfig();
+const authProject = `auth-${environment.name}`;
+const notesProject = `notes-${environment.name}`;
+const getNotesProject = `get-notes-${environment.name}`;
+const updateNoteProject = `update-note-${environment.name}`;
 
 export default defineConfig({
   testDir: './tests',
@@ -42,8 +46,23 @@ export default defineConfig({
   },
   projects: [
     {
-      name: `api-${environment.name}`,
-      testMatch: /.*\.spec\.ts/,
+      name: authProject,
+      testMatch: /user-auth\.spec\.ts/,
+    },
+    {
+      name: notesProject,
+      testMatch: /create-note\.spec\.ts/,
+      dependencies: [authProject],
+    },
+    {
+      name: getNotesProject,
+      testMatch: /get-all-notes\.spec\.ts/,
+      dependencies: [notesProject],
+    },
+    {
+      name: updateNoteProject,
+      testMatch: /update-note\.spec\.ts/,
+      dependencies: [getNotesProject],
     },
   ],
 });

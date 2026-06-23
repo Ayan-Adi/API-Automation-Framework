@@ -1,0 +1,15 @@
+{
+  "user": {
+    "id": "6a3aaa4534bba2029647d038",
+    "name": "Abcd",
+    "email": "user_1782229573005@example.com",
+    "password": "TestPassword123!"
+  },
+  "token": "43ac1fb03fb34b839f216825715bda068b37783f4a61416ca91531f6502654d7",
+  "note": {
+    "id": "6a3aaa4634bba2029647d040",
+    "title": "Practice WebApp UI Updated",
+    "description": "Finish the development of the UI Automation Practice WebApp Updated",
+    "category": "Home"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "updatedNote": {
+    "title": "Practice WebApp UI Updated",
+    "description": "Finish the development of the UI Automation Practice WebApp Updated",
+    "category": "Home",
+    "completed": false
+  },
+  "expectedResponse": {
+    "success": true,
+    "status": 200,
+    "message": "Note successfully Updated"
+  }
+}

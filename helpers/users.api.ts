@@ -1,5 +1,5 @@
 import { APIRequestContext, APIResponse } from '@playwright/test';
-import { SignupPayload } from '../types/api.types';
+import { LoginPayload, SignupPayload } from '../types/api.types';
 
 export class UsersApi {
   constructor(private readonly request: APIRequestContext) {}
@@ -8,6 +8,15 @@ export class UsersApi {
     return this.request.post('users/register', {
       form: {
         name: payload.name,
+        email: payload.email,
+        password: payload.password,
+      },
+    });
+  }
+
+  async loginUser(payload: LoginPayload): Promise<APIResponse> {
+    return this.request.post('users/login', {
+      form: {
         email: payload.email,
         password: payload.password,
       },

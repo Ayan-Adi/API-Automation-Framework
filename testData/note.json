@@ -1,0 +1,12 @@
+{
+  "validNote": {
+    "title": "Practice WebApp UI",
+    "description": "Finish the development of the UI Automation Practice WebApp",
+    "category": "Home"
+  },
+  "expectedResponse": {
+    "success": true,
+    "status": 200,
+    "message": "Note successfully created"
+  }
+}
