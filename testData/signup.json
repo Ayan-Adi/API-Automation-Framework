@@ -1,0 +1,11 @@
+{
+  "validUser": {
+    "name": "Abcd",
+    "password": "TestPassword123!"
+  },
+  "expectedResponse": {
+    "success": true,
+    "status": 201,
+    "message": "User account created successfully"
+  }
+}
